@@ -20,6 +20,7 @@ class Office:
 			for col in range(len(self.tiles[row])):
 				if self.tiles[row][col]==1:
 					self.wall_list.append(wall.Wall(col*self.y_tile_size, row*self.x_tile_size, 'black-rect.jpg'))
+		print(self.wall_list)
 		return self.wall_list
 
 

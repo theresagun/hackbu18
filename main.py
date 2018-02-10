@@ -43,14 +43,14 @@ class Controller:
 		if x+w > mouse[0] > x and y+h > mouse[1] > y:
 			pygame.draw.rect(self.screen, ac,(x,y,w,h))
 			if(click[0] == 1 and action != None):
-				if action=="play":
-					gameStuff6.main()
+				if action=="OFFICE":
+					self.goToOffice()
 				if action=="QUIT":
 					pygame.quit()
 		else:
 			pygame.draw.rect(self.screen, ic,(x,y,w,h))
-
-		smallText = pygame.font.SysFont("Helvetica", 28, True, False)
+		pygame.font.init()
+		smallText = pygame.font.SysFont("Calibri", 28, True, False)
 		newgame = smallText.render(msg, True, WHITE)
 		space = smallText.size(msg)
 		self.screen.blit(newgame, (x+(w-space[0])/2,y+(h-space[1])/2,w,h))
@@ -63,7 +63,7 @@ class Controller:
 					end_it=False
 			self.background.fill((0, 0, 0))
 			#self.screen.blit(self.background, (0,0))
-			newgame = self.button("Start Game", 420,350,150,130,BLACK,WHITE, "QUIT")
+			newgame = self.button("Start Game", 420,350,150,130,BLACK,WHITE, "OFFICE")
 			self.background = pygame.image.load("Title screen.png")
 			self.screen.blit(pygame.transform.scale(self.background, (990, 624)), (0,0))
 
@@ -75,6 +75,21 @@ class Controller:
 
 			pygame.display.flip()
 		pygame.quit()
+
+	def goToOffice(self):
+		end_it=True
+		while (end_it==True):
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					end_it=False
+			self.background = pygame.Surface(self.screen.get_size()).convert()
+			self.background.fill((250, 250, 250))
+			self.screen.blit(self.background,(0,0))
+			self.wall_sprites.draw(self.screen)
+			pygame.display.flip()
+		pygame.quit()
+
+		
 
 
 
