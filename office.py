@@ -1,6 +1,5 @@
 import wall
 import pygame
-import wall
 
 class Office:
 	def __init__(self, x_tile_size, y_tile_size):
@@ -14,12 +13,11 @@ class Office:
 			self.tiles.append(list(line.rstrip()))
 		self.office_file.close()
 
-		self.wall_list=[]
-		
+		self.wall_list=[]		
 		for row in range(len(self.tiles)):
 			for col in range(len(self.tiles[row])):
-				if self.tiles[row][col]==1:
-					self.wall_list.append(wall.Wall(col*self.y_tile_size, row*self.x_tile_size, 'black-rect.jpg'))
+				if self.tiles[row][col]=="1":
+					self.wall_list.append(wall.Wall(col*self.x_tile_size, row*self.y_tile_size, 'black-rect.jpg'))
 		print(self.wall_list)
 		return self.wall_list
 
