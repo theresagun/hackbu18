@@ -39,8 +39,8 @@ class Controller:
 			if(click[0] == 1 and action != None):
 				if action=="play":
 					gameStuff6.main()
-				if action=="settings":
-					settingsscreen.main()
+				if action=="QUIT":
+					pygame.quit()
 		else:
 			pygame.draw.rect(self.screen, ic,(x,y,w,h))
 
@@ -57,10 +57,14 @@ class Controller:
 					end_it=False
 			self.background.fill((0, 0, 0))
 			#self.screen.blit(self.background, (0,0))
-			newgame = self.button("New Game",400,400,100,100,BLACK,WHITE)
-			self.screen = pygame.image.load("Title screen.png")
-			self.screen.blit(pygame.transform.scale(self.screen, (990, 624)), (0,0))
-			#self.button("Start", 400, 400, 100, 100, BLACK, WHITE)
+			newgame = self.button("Start Game", 420,350,150,130,BLACK,WHITE, "QUIT")
+			self.background = pygame.image.load("Title screen.png")
+			self.screen.blit(pygame.transform.scale(self.background, (990, 624)), (0,0))
+
+			myfont=pygame.font.SysFont("Calibri", 50, True, False)
+			nlabel=myfont.render("Start", False, BLACK)
+			self.screen.blit(nlabel, (440,385))
+
 			pygame.display.flip()
 		pygame.quit()
 
