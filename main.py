@@ -1,5 +1,7 @@
 import pygame
 import sys
+import office
+import wall
 
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
@@ -15,6 +17,10 @@ class Controller:
 		self.screen=pygame.display.set_mode((self.width, self.height))
 		self.caption=pygame.display.set_caption('Breaking The Glass Ceiling')
 		self.background = pygame.Surface(self.screen.get_size()).convert()
+
+		self.create_office=office.Office(30,24)
+		self.office_background=office.Office.createOffice(self.create_office)
+		self.wall_sprites = pygame.sprite.Group(self.office_background)
 
 
 	def button(self, msg,x,y,w,h,ic,ac,action=None):
@@ -64,6 +70,8 @@ class Controller:
 			myfont=pygame.font.SysFont("Calibri", 50, True, False)
 			nlabel=myfont.render("Start", False, BLACK)
 			self.screen.blit(nlabel, (440,385))
+
+			self.wall_sprites.draw(self.screen)
 
 			pygame.display.flip()
 		pygame.quit()
