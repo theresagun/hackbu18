@@ -24,7 +24,8 @@ class Controller:
 		self.wall_sprites = pygame.sprite.Group(self.office_background[0])
 		self.floor_sprites= pygame.sprite.Group(self.office_background[1])
 
-		self.woman=woman.Woman(250,200, "black-rect.png ")
+		self.woman=woman.Woman(90,46, "BlondeHair.png")
+		self.woman_sprite=pygame.sprite.Group(self.woman)
 
 
 	def button(self, msg,x,y,w,h,ic,ac,action=None):
@@ -87,13 +88,19 @@ class Controller:
 					end_it=False
 				if event.type == pygame.KEYDOWN:
 					if event.key==pygame.K_UP and self.woman.canMove(self.wall_sprites):
-						self.woman.rect.y-=1
+						self.woman.rect.y-=23
+						#self.woman.direction="up"
 					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
-						self.woman.rect.y+=1				
+						self.woman.rect.y+=23	
+						#self.woman.direction="up"			
 					elif event.key==pygame.K_LEFT and self.woman.canMove(self.wall_sprites):
-						self.woman.rect.x-=1
-					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
-						self.woman.rect.x+=1
+						self.woman.rect.x-=30
+						#self.woman.direction="up"
+					elif event.key==pygame.K_RIGHT and self.woman.canMove(self.wall_sprites):
+						self.woman.rect.x+=30
+						#self.woman.direction="up"
+
+
 
 
 			self.background = pygame.Surface(self.screen.get_size()).convert()
@@ -101,6 +108,7 @@ class Controller:
 			self.screen.blit(self.background,(0,0))
 			self.wall_sprites.draw(self.screen)
 			self.floor_sprites.draw(self.screen)
+			self.woman_sprite.draw(self.screen)
 			pygame.display.flip()
 		pygame.quit()
 
