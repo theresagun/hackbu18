@@ -3,6 +3,7 @@ import sys
 import office
 import wall
 import woman
+import men
 
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
@@ -26,6 +27,27 @@ class Controller:
 
 		self.woman=woman.Woman(90,46, "BlondeHair.png")
 		self.woman_sprite=pygame.sprite.Group(self.woman)
+
+		self.man1=men.men(880,450,'man1.png') #done CEO/BOSS
+		self.man2=men.men(150,50,'man2.png') #done
+		self.man3=men.men(280,40,'man3.png') #done
+		self.man4=men.men(460,40,'man4.png') #done
+		self.man5=men.men(640,40,'man5.png') #done
+		self.man6=men.men(765,40,'man6.png') #done
+		self.man7=men.men(880,40,'man7.png') #done
+		self.man8=men.men(480,207,'man8.png') #done
+		self.man9=men.men(480,253,'man9.png') #done
+		self.man10=men.men(720,207,'man10.png') #done
+		self.man11=men.men(600,253,'man11.png') #done
+		self.man12=men.men(720,253,'man12.png') #done
+		self.man13=men.men(60,130,'man13.png') #done
+		self.man14=men.men(60,450,'man14.png') #done
+		self.man15=men.men(60,300,'man15.png') #done
+
+	#	self.menList = []
+	#	for i in range(1,16):
+	#		self.menList.append(self.man + i)
+		self.men_sprite=pygame.sprite.Group([self.man1,self.man2,self.man3,self.man4,self.man5,self.man6,self.man7,self.man8,self.man9,self.man10,self.man11,self.man12,self.man13,self.man14,self.man15])
 
 
 	def button(self, msg,x,y,w,h,ic,ac,action=None):
@@ -91,8 +113,8 @@ class Controller:
 						self.woman.rect.y-=23
 						self.woman.direction="up"
 					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
-						self.woman.rect.y+=23	
-						self.woman.direction="down"			
+						self.woman.rect.y+=23
+						self.woman.direction="down"
 					elif event.key==pygame.K_LEFT and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.x-=30
 						self.woman.direction="left"
@@ -107,7 +129,7 @@ class Controller:
 					if self.woman.direction=="left":
 						self.woman.rect.x+=30
 					if self.woman.direction=="right":
-						self.woman.rect.x-=30		
+						self.woman.rect.x-=30
 
 
 
@@ -118,6 +140,9 @@ class Controller:
 			self.wall_sprites.draw(self.screen)
 			self.floor_sprites.draw(self.screen)
 			self.woman_sprite.draw(self.screen)
+
+			self.men_sprite.draw(self.screen)
+
 			pygame.display.flip()
 		pygame.quit()
 
