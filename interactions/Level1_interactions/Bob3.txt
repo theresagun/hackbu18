@@ -1,0 +1,3 @@
+Well done, [name]. Completing each task will give you 10 experience points.
+Earn 60 experience points, and you'll get promoted to senior programmer.
+Your training is done! go to your coworkers to work on more assignments.

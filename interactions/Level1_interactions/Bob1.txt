@@ -1,0 +1,5 @@
+Hello [name], welcome to your first day as a junior programmer at JKAT Tech!
+We're excited to have you here.
+Why don't you go around and meet your coworkers!
+Go introduce yourself to all five of your fellow junior programmers, 
+then come back to my office for your first assignment.
