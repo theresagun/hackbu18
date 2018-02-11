@@ -484,6 +484,7 @@ class Controller:
 	def levelUp(self):
 		titles = ["Junior Developer", "Senior Developer", "Lead Developer", "Project Manager", "CEO"]
 		self.job_title = titles[self.level]
+		self.bob_counter = 0;
 
 
 
