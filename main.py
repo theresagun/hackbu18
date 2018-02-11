@@ -20,7 +20,7 @@ class Controller:
 		self.height=height
 		self.screen=pygame.display.set_mode((self.width, self.height))
 		self.exp = 0
-		self.job_title = "Junior developer"
+		self.job_title = "Junior programmer"
 		self.caption=pygame.display.set_caption('Breaking The Glass Ceiling')
 		self.background = pygame.Surface(self.screen.get_size()).convert()
 		self.talk_to_bob = True
