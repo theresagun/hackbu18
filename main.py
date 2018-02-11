@@ -18,7 +18,7 @@ class Controller:
 		self.caption=pygame.display.set_caption('Breaking The Glass Ceiling')
 		self.background = pygame.Surface(self.screen.get_size()).convert()
 
-		self.create_office=office.Office(30,24)
+		self.create_office=office.Office(30,23)
 		self.office_background=office.Office.createOffice(self.create_office)
 		self.wall_sprites = pygame.sprite.Group(self.office_background)
 
@@ -71,7 +71,6 @@ class Controller:
 			nlabel=myfont.render("Start", False, BLACK)
 			self.screen.blit(nlabel, (440,385))
 
-			self.wall_sprites.draw(self.screen)
 
 			pygame.display.flip()
 		pygame.quit()
@@ -89,7 +88,7 @@ class Controller:
 			pygame.display.flip()
 		pygame.quit()
 
-		
+
 
 
 
