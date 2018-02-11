@@ -139,10 +139,38 @@ class Controller:
 			self.screen.blit(self.background,(0,0))
 			self.wall_sprites.draw(self.screen)
 			self.floor_sprites.draw(self.screen)
-			self.woman_sprite.draw(self.screen)
 
 			self.men_sprite.draw(self.screen)
 
+
+			self.couch = pygame.image.load("couch.png").convert_alpha()
+			self.couch = pygame.transform.scale(self.couch, (120, 69))
+			self.boy_throne = pygame.image.load("boy-throne.png").convert_alpha()
+			self.boy_throne = pygame.transform.scale(self.boy_throne, (45, 69))
+			self.desk = pygame.image.load("ceo-desk.png").convert_alpha()
+			self.desk = pygame.transform.scale(self.desk, (60, 46))
+			self.plant = pygame.image.load("ficus.png").convert_alpha()
+			self.plant = pygame.transform.scale(self.plant, (30, 46))
+			self.table = pygame.image.load("food-table.png").convert_alpha()
+			self.table = pygame.transform.scale(self.table, (90, 46))
+			self.chair = pygame.image.load("peasant-throne.png").convert_alpha()
+			self.chair = pygame.transform.scale(self.chair, (45, 46))
+
+			self.screen.blit(self.couch, (600,365))
+			self.screen.blit(self.boy_throne, (910,430))
+			self.screen.blit(self.desk, (840,470))
+			self.screen.blit(self.plant, (400,475))
+			self.screen.blit(self.plant, (400,370))
+			self.screen.blit(self.plant, (40,30))
+			self.screen.blit(self.chair, (170,90))
+			self.screen.blit(self.chair, (115,65))
+			self.screen.blit(self.table, (100,90))
+			self.screen.blit(self.chair, (50,90))
+			self.screen.blit(self.chair, (115,100))
+
+
+			self.woman_sprite.draw(self.screen)
+			
 			pygame.display.flip()
 		pygame.quit()
 
