@@ -140,14 +140,20 @@ class Controller:
 					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
 					if self.men_collide and self.talk==0:
-						won = interaction.first(self.level)
+						won = interaction.breakout1(self.level)
 						self.screen=pygame.display.set_mode((self.width, self.height))
 						if(won == 10):
 							self.talk += 1
 							self.exp += won
-							print(self.talk)
+							pygame.mouse.set_visible(1)
+					elif self.men_collide and self.talk==1:
+						won=interaction.snake1(self.level)
+						self.screen=pygame.display.set_mode((self.width, self.height))
+						if won!=0:
+							self.exp+=won
+							self.talk+=1
 						#self.goToOffice()
-						pygame.mouse.set_visible(1)
+						
 					if(self.exp == 30 or self.exp == 60 or self.exp == 90 or self.exp == 120):
 						self.levelUp()
 						self.level +=1
