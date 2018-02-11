@@ -105,7 +105,24 @@ class Controller:
 			pygame.display.flip()
 		pygame.quit()
 
+	def converse(self):
+		bob1=open('interactions/Level1_interactions/Bob1.txt', 'r')
+		bob2=open('interactions/Level1_interactions/Bob2.txt', 'r')
+		#.....
+		font=pygame.font.SysFont("Calibri", 14)
+		self.label = True
+		self.nlabel1=[]
+		for line in bob1:
+			self.nlabel1.append(font.render(line.strip("\n"), False, BLACK))
+		#print(print_out)
+		for line in range(len(self.nlabel1)):
+			self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
+		#breakout1(level)
+
+
+
 	def goToOffice(self):
+		self.label = False
 		end_it=True
 		self.level = 1
 		self.talk = 0
@@ -140,8 +157,8 @@ class Controller:
 					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
 					if self.men_collide and self.talk==0:
-						
-						won = interaction.converse(self.level, self.talk, self.screen, self)
+
+						won = self.converse()
 						self.screen=pygame.display.set_mode((self.width, self.height))
 						if(won == 10):
 							self.talk += 1
@@ -203,6 +220,9 @@ class Controller:
 			self.screen.blit(self.chair, (50,90))
 			self.screen.blit(self.chair, (115,100))
 
+			if self.label:
+				for line in range(len(self.nlabel1)):
+					self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
 
 			self.woman_sprite.draw(self.screen)
 
