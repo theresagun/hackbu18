@@ -2,6 +2,7 @@ import pygame
 import sys
 import office
 import wall
+import woman
 
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
@@ -22,6 +23,8 @@ class Controller:
 		self.office_background=office.Office.createOffice(self.create_office)
 		self.wall_sprites = pygame.sprite.Group(self.office_background[0])
 		self.floor_sprites= pygame.sprite.Group(self.office_background[1])
+
+		self.woman=woman.Woman(250,200, "black-rect.png ")
 
 
 	def button(self, msg,x,y,w,h,ic,ac,action=None):
@@ -82,6 +85,17 @@ class Controller:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					end_it=False
+				if event.type == pygame.KEYDOWN:
+					if event.key==pygame.K_UP and self.woman.canMove(self.wall_sprites):
+						self.woman.rect.y-=1
+					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
+						self.woman.rect.y+=1				
+					elif event.key==pygame.K_LEFT and self.woman.canMove(self.wall_sprites):
+						self.woman.rect.x-=1
+					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
+						self.woman.rect.x+=1
+
+
 			self.background = pygame.Surface(self.screen.get_size()).convert()
 			self.background.fill((250, 250, 250))
 			self.screen.blit(self.background,(0,0))
