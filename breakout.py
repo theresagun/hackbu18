@@ -198,9 +198,9 @@ def main(level):
         player = Player(2)
         # Create the ball
         ball = Ball(8)
-    elif(level == 4):
+    elif(level >= 4):
         # Create the player paddle object
-        player = Player(4)
+        player = Player(2)
         # Create the ball
         ball = Ball(12)
     allsprites.add(player)
@@ -266,6 +266,8 @@ def main(level):
             textpos = text.get_rect(centerx=background.get_width()/2)
             textpos.top = 300
             screen.blit(text, textpos)
+            #time.sleep(5)
+            exit_program = True
 
         # See if the ball hits the player paddle
         if pygame.sprite.spritecollide(player, balls, False):

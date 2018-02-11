@@ -107,8 +107,8 @@ class Controller:
 
 	def goToOffice(self):
 		end_it=True
-		self.talk = 0
 		self.level = 1
+		self.talk = 0
 		while (end_it==True):
 			self.caption=pygame.display.set_caption('Breaking The Glass Ceiling                    Exp:  ' + str(self.exp) + "               Job Title:  " + self.job_title)
 			for event in pygame.event.get():
@@ -149,14 +149,17 @@ class Controller:
 					elif self.men_collide and self.talk==1:
 						won=interaction.snake1(self.level)
 						self.screen=pygame.display.set_mode((self.width, self.height))
-						if won!=0:
+						if won==10:
 							self.exp+=won
 							self.talk+=1
 						#self.goToOffice()
-						
-					if(self.exp == 30 or self.exp == 60 or self.exp == 90 or self.exp == 120):
+					#elif self.men_collide and self.talk==2:
+						#won = interaction.floodIt()
+
+					if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
 						self.levelUp()
 						self.level +=1
+						self.talk = 0
 
 
 			self.background = pygame.Surface(self.screen.get_size()).convert()
@@ -203,7 +206,7 @@ class Controller:
 
 	def levelUp(self):
 		titles = ["Junior Developer", "Senior Developer", "Lead Developer", "Project Manager", "CEO"]
-		self.job_title = title[self.level]
+		self.job_title = titles[self.level]
 
 
 

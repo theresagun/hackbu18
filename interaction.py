@@ -1,5 +1,8 @@
 import breakout
 import snake
+#import sys
+#sys.path.append('FloodIt-master')
+#import game
 
 def breakout1(level):
 	if(not breakout.main(level)):
@@ -9,3 +12,6 @@ def breakout1(level):
 
 def snake1(level):
 	return snake.main(level)
+
+#def floodIt():
+	#return game.main()
