@@ -140,7 +140,8 @@ class Controller:
 					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
 					if self.men_collide and self.talk==0:
-						won = interaction.breakout1(self.level)
+						
+						won = interaction.converse(self.level, self.talk, self.screen, self)
 						self.screen=pygame.display.set_mode((self.width, self.height))
 						if(won == 10):
 							self.talk += 1
@@ -163,6 +164,8 @@ class Controller:
 						#self.goToOffice()
 					#elif self.men_collide and self.talk==2:
 						#won = interaction.floodIt()
+
+
 
 
 

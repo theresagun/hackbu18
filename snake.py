@@ -91,8 +91,8 @@ def main(level):
 	apple = Apple()
 
 	FPS = 5
-    continue1 = True
-	while continue1:
+    	#continue1 = True
+	while True:
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -111,22 +111,22 @@ def main(level):
 			if level==1:
 				if snake.length==2:
 					return 10
-                    continue1 = False
+                    #continue1 = False
 			if level==2:
 				FPS=10
 				if snake.length==2:
 					return 10
-                    continue1 = False
+                    #continue1 = False
 			if level==3:
 				FPS=12
 				if snake.length==3:
 					return 10
-                    continue1 = False
+                    #continue1 = False
 			if level==4:
 				FPS=15
 				if snake.length==4:
 					return 10
-                    continue1 = False
+                    #continue1 = False
 
 		surface.fill((255,255,255))
 		snake.move()
