@@ -7,11 +7,10 @@ class Woman(pygame.sprite.Sprite):
 		self.image = pygame.image.load(img_file).convert()
 		self.image = pygame.transform.scale(self.image, (30,23))
 		self.rect = self.image.get_rect()
-		self.rect.centerx=x
-		self.rect.centery=y
+		self.rect.x=x
+		self.rect.y=y
 	
 	def canMove(self, walls):
 		if pygame.sprite.spritecollide(self, walls, False):
 			return False
 		return True
-

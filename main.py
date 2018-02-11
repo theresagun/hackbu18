@@ -89,16 +89,25 @@ class Controller:
 				if event.type == pygame.KEYDOWN:
 					if event.key==pygame.K_UP and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.y-=23
-						#self.woman.direction="up"
+						self.woman.direction="up"
 					elif event.key==pygame.K_DOWN and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.y+=23	
-						#self.woman.direction="up"			
+						self.woman.direction="down"			
 					elif event.key==pygame.K_LEFT and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.x-=30
-						#self.woman.direction="up"
+						self.woman.direction="left"
 					elif event.key==pygame.K_RIGHT and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.x+=30
-						#self.woman.direction="up"
+						self.woman.direction="right"
+				if self.woman.canMove(self.wall_sprites)==False:
+					if self.woman.direction=="up":
+						self.woman.rect.y+=23
+					if self.woman.direction=="down":
+						self.woman.rect.y-=23
+					if self.woman.direction=="left":
+						self.woman.rect.x+=30
+					if self.woman.direction=="right":
+						self.woman.rect.x-=30		
 
 
 
