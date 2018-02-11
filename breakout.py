@@ -288,7 +288,7 @@ def main(level):
             ball.bounce(0)
 
             # Game ends if all the blocks are gone
-            if len(blocks) == 9:
+            if len(blocks) == 0:
                 game_over_won = True
                 game_over = True
 

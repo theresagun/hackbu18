@@ -449,7 +449,7 @@ class Controller:
 					self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
 			if not game == "":
 				if game == "S":
-					won = interaction.snake1(1)
+					won = interaction.snake1(self.level)
 					self.screen=pygame.display.set_mode((self.width, self.height))
 					if(won == 10):
 						self.talk += 1
@@ -461,7 +461,7 @@ class Controller:
 							self.talk = 0
 					game = ""
 				elif game == "B":
-					won = interaction.breakout1(1)
+					won = interaction.breakout1(self.level)
 					game = ""
 					self.screen=pygame.display.set_mode((self.width, self.height))
 					if(won == 10):
