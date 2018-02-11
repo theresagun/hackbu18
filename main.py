@@ -126,7 +126,7 @@ class Controller:
 		return None
 
 	def converse(self, name):
-		file = None
+		file = open('interactions/err_msg.txt', 'r')
 		print(name)
 		game = ""
 		if self.job_title == "Junior programmer":
