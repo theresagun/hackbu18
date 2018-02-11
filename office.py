@@ -14,13 +14,14 @@ class Office:
 		self.office_file.close()
 
 		self.wall_list=[]
+		self.floor_list=[]
 		for row in range(len(self.tiles)):
 			for col in range(len(self.tiles[row])):
 				if self.tiles[row][col]=="1":
 					self.wall_list.append(wall.Wall(row*self.x_tile_size,col*self.y_tile_size, 'black-rect.jpg'))
 				elif self.tiles[row][col]=="0":
-					self.wall_list.append(wall.Wall(row*self.x_tile_size,col*self.y_tile_size, 'wood-background.png'))
-		return self.wall_list
+					self.floor_list.append(wall.Wall(row*self.x_tile_size,col*self.y_tile_size, 'wood-background.png'))
+		return self.wall_list, self.floor_list
 
 
 

@@ -20,7 +20,8 @@ class Controller:
 
 		self.create_office=office.Office(30,23)
 		self.office_background=office.Office.createOffice(self.create_office)
-		self.wall_sprites = pygame.sprite.Group(self.office_background)
+		self.wall_sprites = pygame.sprite.Group(self.office_background[0])
+		self.floor_sprites= pygame.sprite.Group(self.office_background[1])
 
 
 	def button(self, msg,x,y,w,h,ic,ac,action=None):
@@ -85,6 +86,7 @@ class Controller:
 			self.background.fill((250, 250, 250))
 			self.screen.blit(self.background,(0,0))
 			self.wall_sprites.draw(self.screen)
+			self.floor_sprites.draw(self.screen)
 			pygame.display.flip()
 		pygame.quit()
 
