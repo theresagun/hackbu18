@@ -4,6 +4,7 @@ import office
 import wall
 import woman
 import men
+import interaction
 
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
@@ -124,15 +125,20 @@ class Controller:
 					elif event.key==pygame.K_RIGHT and self.woman.canMove(self.wall_sprites):
 						self.woman.rect.x+=30
 						self.woman.direction="right"
-				if self.woman.canMove(self.wall_sprites)==False:
+				self.men_collide=pygame.sprite.groupcollide(self.woman_sprite, self.men_sprite, False, False)
+				if self.woman.canMove(self.wall_sprites)==False or self.men_collide:
+
 					if self.woman.direction=="up":
 						self.woman.rect.y+=23
-					if self.woman.direction=="down":
+
+					elif self.woman.direction=="down":
 						self.woman.rect.y-=23
-					if self.woman.direction=="left":
+					elif self.woman.direction=="left":
 						self.woman.rect.x+=30
-					if self.woman.direction=="right":
+					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
+					if self.men_collide:
+						interaction.hello()
 
 
 

@@ -9,6 +9,7 @@ class Woman(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		self.rect.x=x
 		self.rect.y=y
+		self.direction="up"
 	
 	def canMove(self, walls):
 		if pygame.sprite.spritecollide(self, walls, False):
