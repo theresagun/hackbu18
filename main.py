@@ -5,6 +5,7 @@ import wall
 import woman
 import men
 import interaction
+import time
 
 BLACK    = (   0,   0,   0)
 WHITE    = ( 255, 255, 255)
@@ -22,30 +23,42 @@ class Controller:
 		self.job_title = "Junior developer"
 		self.caption=pygame.display.set_caption('Breaking The Glass Ceiling')
 		self.background = pygame.Surface(self.screen.get_size()).convert()
+		self.talk_to_bob = True
+		self.bob_counter = 0
 
 		self.create_office=office.Office(30,23)
 		self.office_background=office.Office.createOffice(self.create_office)
 		self.wall_sprites = pygame.sprite.Group(self.office_background[0])
 		self.floor_sprites= pygame.sprite.Group(self.office_background[1])
 
-		self.woman=woman.Woman(90,46, "BlondeHair.png")
+		self.woman=woman.Woman(810,460, "BlondeHair.png")
 		self.woman_sprite=pygame.sprite.Group(self.woman)
 
-		self.man1=men.men(900,460,'man1.png') #done CEO/BOSS
+		self.man1=men.men(900,460,'man1.png') #done2x CEO/BOSS
 		self.man2=men.men(150,46,'man2.png') #done
 		self.man3=men.men(270,46,'man3.png') #done
 		self.man4=men.men(450,46,'man4.png') #done
 		self.man5=men.men(630,46,'man5.png') #done
-		self.man6=men.men(750,46,'man6.png') #done
-		self.man7=men.men(870,46,'man7.png') #done
-		self.man8=men.men(480,207,'man8.png') #done
-		self.man9=men.men(480,253,'man9.png') #done
-		self.man10=men.men(720,207,'man10.png') #done
-		self.man11=men.men(600,253,'man11.png') #done
-		self.man12=men.men(720,253,'man12.png') #done
+		self.man6=men.men(750,46,'man6.png') #done2x
+		self.man7=men.men(870,46,'man7.png') #done2x
+		self.man8=men.men(480,207,'man8.png') #done2x
+		self.man9=men.men(480,253,'man9.png') #done2x
+		self.man10=men.men(720,207,'man10.png') #done2x
+		self.man11=men.men(600,253,'man11.png') #done2x
+		self.man12=men.men(720,253,'man12.png') #done2x
 		self.man13=men.men(60,138,'man13.png') #done
 		self.man14=men.men(60,460,'man14.png') #done
 		self.man15=men.men(60,299,'man15.png') #done
+
+		self.coords = {}
+		self.coords["Bob"] = [900, 460]
+		self.coords["Mike"] = [480, 207]
+		self.coords["Dave"] = [480, 253]
+		self.coords["Brad"] = [720, 207]
+		self.coords["Phil"] = [600, 253]
+		self.coords["Jack"] = [720, 253]
+		self.coords["James"] = [870, 46]
+		self.coords["Eric"] = [750, 46]
 
 	#	self.menList = []
 	#	for i in range(1,16):
@@ -105,19 +118,240 @@ class Controller:
 			pygame.display.flip()
 		pygame.quit()
 
-	def converse(self):
-		bob1=open('interactions/Level1_interactions/Bob1.txt', 'r')
-		bob2=open('interactions/Level1_interactions/Bob2.txt', 'r')
+	def coord_to_name(self, x, y):
+		print(x, "", y)
+		for i in self.coords:
+			if ((x - 31) <= self.coords[i][0] <= (x + 31)) and ((y - 24) <= self.coords[i][1] <= (y + 24)):
+				return i
+		return None
+
+	def converse(self, name):
+		file = None
+		print(name)
+		game = ""
+		if self.job_title == "Junior programmer":
+			if self.talk_to_bob:
+				if name == "Bob":
+					if self.bob_counter == 0:
+						file=open('interactions/Level1_interactions/Bob1.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 1:
+						file=open('interactions/Level1_interactions/Bob2.txt', 'r')
+						game = "S"
+					elif self.bob_counter == 2:
+						file=open('interactions/Level1_interactions/Bob3.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 3:
+						file=open('interactions/Level1_interactions/Bob4.txt', 'r')
+						self.talk_to_bob = False
+						self.bob_counter = -1
+					self.bob_counter += 1
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+			else:
+				if name == "Mike":
+					if self.bob_counter == 1:
+						file = open('interactions/Level1_interactions/Mike1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 3:
+						file = open('interactions/Level1_interactions/Mike2.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Dave":
+					if self.bob_counter == 1:
+						file = open('interactions/Level1_interactions/Dave1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 3:
+						file = open('interactions/Level1_interactions/Dave2.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Phil":
+					if self.bob_counter == 1:
+						file = open('interactions/Level1_interactions/Phil1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 3:
+						file = open('interactions/Level1_interactions/Phil2.txt', 'r')
+						Game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Jack":
+					if self.bob_counter == 1:
+						file = open('interactions/Level1_interactions/Jack1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 3:
+						file = open('interactions/Level1_interactions/Jack2.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Brad":
+					if self.bob_counter == 1:
+						file = open('interactions/Level1_interactions/Brad1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 3:
+						file = open('interactions/Level1_interactions/Brad2.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+				if self.talk == 5:
+					self.talk_to_bob = True
+					self.talk = 0
+		elif self.job_title == "Senior Programmer":
+			if self.talk_to_bob:
+				if name == "Bob":
+					if self.bob_counter == 0:
+						file=open('interactions/Leve21_interactions/Bob1.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 1:
+						file=open('interactions/Level2_interactions/Bob2.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 2:
+						file=open('interactions/Level2_interactions/Bob3.txt', 'r')
+						self.talk_to_bob = False
+						self.bob_counter = -1
+					self.bob_counter += 1
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+			else:
+				if name == "Mike":
+					if self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/Mike1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Dave":
+					if self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/Dave1.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Phil":
+					if self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/Phil1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Jack":
+					if self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/Jack1.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Brad":
+					if self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/Brad1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Eric":
+					file = open('interactions/Level2_interactions/EricAll.txt', 'r')
+					if self.bob_counter == 1:
+						self.talk += 1
+					elif self.bob_counter == 2:
+						game = "S"
+				elif name == "James":
+					if self.bob_counter == 1:
+						file = open('interactions/Level2_interactions/James1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/James2.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+				if self.talk == 2:
+					self.talk_to_bob = True
+					self.talk = 0
+		elif self.job_title == "Lead developer":
+			if self.talk_to_bob:
+				if name == "Bob":
+					if self.bob_counter == 0:
+						file=open('interactions/Level3_interactions/Bob1.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 1:
+						file=open('interactions/Level3_interactions/Bob2.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 2:
+						file=open('interactions/Level3_interactions/Bob3.txt', 'r')
+						self.talk_to_bob = False
+					elif self.bob_counter == 3:
+						file=open('interactions/Level3_interactions/Bob4.txt', 'r')
+						self.talk_to_bob = False
+						self.bob_counter = -1
+					self.bob_counter += 1
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+			else:
+				if name == "Mike":
+					if self.bob_counter == 2:
+						file = open('interactions/Level3_interactions/Mike1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Dave":
+					if self.bob_counter == 2:
+						file = open('interactions/Level3_interactions/Dave1.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Phil":
+					if self.bob_counter == 2:
+						file = open('interactions/Level3_interactions/Phil1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Jack":
+					if self.bob_counter == 2:
+						file = open('interactions/Level3_interactions/Jack1.txt', 'r')
+						game = "S"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Brad":
+					if self.bob_counter == 2:
+						file = open('interactions/Level3_interactions/Brad1.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				elif name == "Eric":
+					file = open('interactions/Level3_interactions/EricAll.txt', 'r')
+					if self.bob_counter == 1:
+						self.talk += 1
+					elif self.bob_counter == 2:
+						game = "S"
+				elif name == "James":
+					if self.bob_counter == 1:
+						file = open('interactions/Level2_interactions/James1.txt', 'r')
+						self.talk += 1
+					elif self.bob_counter == 2:
+						file = open('interactions/Level2_interactions/James2.txt', 'r')
+						game = "B"
+					else:
+						file = open('interactions/err_msg.txt', 'r')
+				else:
+					file = open('interactions/err_msg.txt', 'r')
+				if self.talk == 2:
+					self.talk_to_bob = True
+					self.talk = 0
 		#.....
 		font=pygame.font.SysFont("Calibri", 14)
 		self.label = True
 		self.nlabel1=[]
-		for line in bob1:
+		for line in file:
 			self.nlabel1.append(font.render(line.strip("\n"), False, BLACK))
 		#print(print_out)
 		for line in range(len(self.nlabel1)):
 			self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
 		#breakout1(level)
+		if not game == "":
+			time.sleep(10);
+		if game == "S":
+			interaction.snake1(1)
+		elif game == "B":
+			interaction.breakout1(1)
 
 
 
@@ -156,9 +390,9 @@ class Controller:
 						self.woman.rect.x+=30
 					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
-					if self.men_collide and self.talk==0:
-
-						won = self.converse()
+					if self.men_collide and self.talk <= 5:
+						name = self.coord_to_name(self.woman.rect.x, self.woman.rect.y)
+						won = self.converse(name)
 						self.screen=pygame.display.set_mode((self.width, self.height))
 						if(won == 10):
 							self.talk += 1
