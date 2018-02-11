@@ -31,21 +31,21 @@ class Controller:
 		self.woman=woman.Woman(90,46, "BlondeHair.png")
 		self.woman_sprite=pygame.sprite.Group(self.woman)
 
-		self.man1=men.men(880,450,'man1.png') #done CEO/BOSS
-		self.man2=men.men(150,50,'man2.png') #done
-		self.man3=men.men(280,40,'man3.png') #done
-		self.man4=men.men(460,40,'man4.png') #done
-		self.man5=men.men(640,40,'man5.png') #done
-		self.man6=men.men(765,40,'man6.png') #done
-		self.man7=men.men(880,40,'man7.png') #done
+		self.man1=men.men(900,460,'man1.png') #done CEO/BOSS
+		self.man2=men.men(150,46,'man2.png') #done
+		self.man3=men.men(270,46,'man3.png') #done
+		self.man4=men.men(450,46,'man4.png') #done
+		self.man5=men.men(630,46,'man5.png') #done
+		self.man6=men.men(750,46,'man6.png') #done
+		self.man7=men.men(870,46,'man7.png') #done
 		self.man8=men.men(480,207,'man8.png') #done
 		self.man9=men.men(480,253,'man9.png') #done
 		self.man10=men.men(720,207,'man10.png') #done
 		self.man11=men.men(600,253,'man11.png') #done
 		self.man12=men.men(720,253,'man12.png') #done
-		self.man13=men.men(60,130,'man13.png') #done
-		self.man14=men.men(60,450,'man14.png') #done
-		self.man15=men.men(60,300,'man15.png') #done
+		self.man13=men.men(60,138,'man13.png') #done
+		self.man14=men.men(60,460,'man14.png') #done
+		self.man15=men.men(60,299,'man15.png') #done
 
 	#	self.menList = []
 	#	for i in range(1,16):
@@ -149,7 +149,6 @@ class Controller:
 			self.wall_sprites.draw(self.screen)
 			self.floor_sprites.draw(self.screen)
 
-			self.men_sprite.draw(self.screen)
 
 
 			self.couch = pygame.image.load("couch.png").convert_alpha()
@@ -179,6 +178,8 @@ class Controller:
 
 
 			self.woman_sprite.draw(self.screen)
+
+			self.men_sprite.draw(self.screen)
 
 			pygame.display.flip()
 		pygame.quit()
