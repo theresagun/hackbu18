@@ -109,22 +109,22 @@ def main(level):
 				elif event.key == K_RIGHT:
 					snake.point(RIGHT)
 			if level==1:
-				if snake.length==2:
+				if snake.length==10:
 					return 10
                     #continue1 = False
 			if level==2:
 				FPS=10
-				if snake.length==2:
+				if snake.length==20:
 					return 10
                     #continue1 = False
 			if level==3:
 				FPS=12
-				if snake.length==3:
+				if snake.length==30:
 					return 10
                     #continue1 = False
 			if level==4:
 				FPS=15
-				if snake.length==4:
+				if snake.length==40:
 					return 10
                     #continue1 = False
 

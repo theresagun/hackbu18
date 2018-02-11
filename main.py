@@ -198,7 +198,7 @@ class Controller:
 					file = open('interactions/err_msg.txt', 'r')
 				if self.talk == 5:
 					self.talk_to_bob = True
-					self.talk = 0
+					#self.talk = 0
 		elif self.job_title == "Senior Programmer":
 			if self.talk_to_bob:
 				if name == "Bob":
@@ -346,13 +346,13 @@ class Controller:
 		for line in range(len(self.nlabel1)):
 			self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
 		#breakout1(level)
-		if not game == "":
-			time.sleep(10);
-		if game == "S":
-			interaction.snake1(1)
-		elif game == "B":
-			interaction.breakout1(1)
-
+		# if not game == "":
+		# 	time.sleep(10);
+		# if game == "S":
+		# 	interaction.snake1(1)
+		# elif game == "B":
+		# 	interaction.breakout1(1)
+		return game
 
 
 	def goToOffice(self):
@@ -360,6 +360,7 @@ class Controller:
 		end_it=True
 		self.level = 1
 		self.talk = 0
+		game = ""
 		while (end_it==True):
 			self.caption=pygame.display.set_caption('Breaking The Glass Ceiling                    Exp:  ' + str(self.exp) + "               Job Title:  " + self.job_title)
 			for event in pygame.event.get():
@@ -390,35 +391,24 @@ class Controller:
 						self.woman.rect.x+=30
 					elif self.woman.direction=="right":
 						self.woman.rect.x-=30
-					if self.men_collide and self.talk <= 5:
+					if self.men_collide:
 						name = self.coord_to_name(self.woman.rect.x, self.woman.rect.y)
-						won = self.converse(name)
-						self.screen=pygame.display.set_mode((self.width, self.height))
-						if(won == 10):
-							self.talk += 1
-							self.exp += won
-							pygame.mouse.set_visible(1)
-							if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
-								self.levelUp()
-								self.level +=1
-								self.talk = 0
+						game = self.converse(name)
+						won = game
+
 					elif self.men_collide and self.talk==1:
 						won=interaction.snake1(self.level)
 						self.screen=pygame.display.set_mode((self.width, self.height))
-						if won==10:
-							self.exp+=won
-							self.talk+=1
-							if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
-								self.levelUp()
-								self.level +=1
-								self.talk = 0
+						# if won==10:
+						# 	self.exp+=won
+						# 	self.talk+=1
+						# 	if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
+						# 		self.levelUp()
+						# 		self.level +=1
+						# 		self.talk = 0
 						#self.goToOffice()
 					#elif self.men_collide and self.talk==2:
 						#won = interaction.floodIt()
-
-
-
-
 
 
 			self.background = pygame.Surface(self.screen.get_size()).convert()
@@ -457,6 +447,31 @@ class Controller:
 			if self.label:
 				for line in range(len(self.nlabel1)):
 					self.screen.blit(self.nlabel1[line], (20,560 + (16*line)))
+			if not game == "":
+				if game == "S":
+					won = interaction.snake1(1)
+					self.screen=pygame.display.set_mode((self.width, self.height))
+					if(won == 10):
+						self.talk += 1
+						self.exp += won
+						pygame.mouse.set_visible(1)
+						if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
+							self.levelUp()
+							self.level +=1
+							self.talk = 0
+					game = ""
+				elif game == "B":
+					won = interaction.breakout1(1)
+					game = ""
+					self.screen=pygame.display.set_mode((self.width, self.height))
+					if(won == 10):
+						self.talk += 1
+						self.exp += won
+						pygame.mouse.set_visible(1)
+						if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
+							self.levelUp()
+							self.level +=1
+							self.talk = 0
 
 			self.woman_sprite.draw(self.screen)
 
