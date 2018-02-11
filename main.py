@@ -146,20 +146,25 @@ class Controller:
 							self.talk += 1
 							self.exp += won
 							pygame.mouse.set_visible(1)
+							if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
+								self.levelUp()
+								self.level +=1
+								self.talk = 0
 					elif self.men_collide and self.talk==1:
 						won=interaction.snake1(self.level)
 						self.screen=pygame.display.set_mode((self.width, self.height))
 						if won==10:
 							self.exp+=won
 							self.talk+=1
+							if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
+								self.levelUp()
+								self.level +=1
+								self.talk = 0
 						#self.goToOffice()
 					#elif self.men_collide and self.talk==2:
 						#won = interaction.floodIt()
 
-					if(self.exp == 20 or self.exp == 40 or self.exp == 60 or self.exp == 80):
-						self.levelUp()
-						self.level +=1
-						self.talk = 0
+
 
 
 			self.background = pygame.Surface(self.screen.get_size()).convert()

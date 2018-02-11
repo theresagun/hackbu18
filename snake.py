@@ -48,7 +48,7 @@ class Snake(object):
             self.positions.insert(0, new)
             if len(self.positions) > self.length:
                 self.positions.pop()
-    
+
     def draw(self, surf):
         for p in self.positions:
             draw_box(surf, self.color, p)
@@ -75,7 +75,7 @@ def main(level):
 	pygame.init()
 	fpsClock=pygame.time.Clock()
 
-	
+
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 	surface = pygame.Surface(screen.get_size())
 	surface = surface.convert()
@@ -85,13 +85,14 @@ def main(level):
 	pygame.key.set_repeat(1, 40)
 
 
-    
-	screen.blit(surface, (0,0))	
+
+	screen.blit(surface, (0,0))
 	snake = Snake()
 	apple = Apple()
-	
+
 	FPS = 5
-	while True:
+    continue1 = True
+	while continue1:
 
 		for event in pygame.event.get():
 			if event.type == QUIT:
@@ -108,20 +109,24 @@ def main(level):
 				elif event.key == K_RIGHT:
 					snake.point(RIGHT)
 			if level==1:
-				if snake.length==10:
-					return 10			
+				if snake.length==2:
+					return 10
+                    continue1 = False
 			if level==2:
 				FPS=10
-				if snake.length==20:
+				if snake.length==2:
 					return 10
+                    continue1 = False
 			if level==3:
 				FPS=12
-				if snake.length==30:
+				if snake.length==3:
 					return 10
+                    continue1 = False
 			if level==4:
 				FPS=15
-				if snake.length==40:
+				if snake.length==4:
 					return 10
+                    continue1 = False
 
 		surface.fill((255,255,255))
 		snake.move()
@@ -138,4 +143,3 @@ def main(level):
 		pygame.display.flip()
 		pygame.display.update()
 		fpsClock.tick(FPS + snake.length/3)
-
