@@ -17,6 +17,8 @@ class Controller:
 		self.width=width
 		self.height=height
 		self.screen=pygame.display.set_mode((self.width, self.height))
+		self.exp = 0
+		self.job_title = "Junior developer"
 		self.caption=pygame.display.set_caption('Breaking The Glass Ceiling')
 		self.background = pygame.Surface(self.screen.get_size()).convert()
 
@@ -105,6 +107,7 @@ class Controller:
 	def goToOffice(self):
 		end_it=True
 		while (end_it==True):
+			self.caption=pygame.display.set_caption('Breaking The Glass Ceiling                    Exp:  ' + str(self.exp) + "               Job Title:  " + self.job_title)
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					end_it=False
@@ -170,7 +173,7 @@ class Controller:
 
 
 			self.woman_sprite.draw(self.screen)
-			
+
 			pygame.display.flip()
 		pygame.quit()
 
